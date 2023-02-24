@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 
 const ContactItem = ({ id, name, number, onClick }) => {
   return (
@@ -11,6 +11,13 @@ const ContactItem = ({ id, name, number, onClick }) => {
       </button>
     </li>
   );
+};
+
+ContactItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 
