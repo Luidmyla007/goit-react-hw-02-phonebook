@@ -1,6 +1,6 @@
 
 
-export const ContactItem = ({ id, name, number, onClick }) => {
+const ContactItem = ({ id, name, number, onClick }) => {
   return (
     <li key={id}>
       <span>

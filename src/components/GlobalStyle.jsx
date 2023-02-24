@@ -31,7 +31,7 @@ h1,
  }
   
  ul {
-   list-style: none;
+   
    margin: 0;
    padding-left: 0;
  }
