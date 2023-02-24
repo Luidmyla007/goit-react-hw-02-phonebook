@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import css from './App.module.css';
 import { GlobalStyle } from './GlobalStyle';
 import Form from './ContactForm/contactForm';
+import { ContactList } from './ContactList/contactList'
 
 
 
@@ -38,21 +39,17 @@ export class App extends Component {
 
   render() {
     const { contacts } = this.state;
-
     return (
       <div className={css.container}>
         <GlobalStyle />
-        <Form onSubmit={this.formSubmitHandler} />
-        
+        <Form onSubmit={this.formSubmitHandler} />        
         <div>
-        <h2>Contacts</h2>
-        <ul>
-           {contacts.map(contact => (
-             <li key={contact.id}> <span>{contact.name}: {contact.number}</span><button type='button'>Delete</button></li>             
-           ))}
-            
-        </ul>
-          </div>
+          <h2>Contacts</h2>
+          <ContactList
+            contacts={contacts}
+            onDeleteContact={this.deleteContact}
+          />          
+        </div>
       </div>
     );
   }
