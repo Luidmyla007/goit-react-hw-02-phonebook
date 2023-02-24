@@ -1,11 +1,12 @@
-import React from 'react';
+import { Component } from 'react';
+import { nanoid } from "nanoid"; 
 import css from './App.module.css';
 import { GlobalStyle } from './GlobalStyle';
-// import { nanoid } from 'nanoid';
-import { Form } from './ContactForm/contactForm';
+import Form from './ContactForm/contactForm';
 
 
-export class App extends React.Component {
+
+export class App extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,9 +16,19 @@ export class App extends React.Component {
     ],
   };
 
-  formSubmitHandler = data => {
-    console.log(data);
-  }; 
+  formSubmitHandler = NewContact => {          
+    const includesName = this.state.contacts.find(
+      contact => contact.name.toLocaleLowerCase() === NewContact.name.toLocaleLowerCase()
+    );
+      if (includesName) {
+      return alert(`${NewContact.name} is already in contacts.`);      
+      } else {      
+       let myContact = { id: nanoid(), name: NewContact.name, number: NewContact.number };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, myContact],
+      }));
+    }; 
+  };  
 
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -31,7 +42,8 @@ export class App extends React.Component {
     return (
       <div className={css.container}>
         <GlobalStyle />
-        <Form onSubmit={this.formSubmitHandler } />
+        <Form onSubmit={this.formSubmitHandler} />
+        
         <div>
         <h2>Contacts</h2>
         <ul>
@@ -49,11 +61,4 @@ export class App extends React.Component {
 
 
 
-// export const App = () => {
-//   return (
-//     <div className={css.container}>
-//      <GlobalStyle/>
-//       React homework template
-//     </div>
-//   );
-// };
+
