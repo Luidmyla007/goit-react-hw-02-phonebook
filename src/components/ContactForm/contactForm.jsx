@@ -2,13 +2,14 @@ import { Component } from 'react';
 import { nanoid } from "nanoid";
 import PropTypes from 'prop-types';
 
+const INITIAL_STATE = {  
+       name: '',
+       number: '',    
+};
 
  class Form extends Component{
-    state = {
-       name: '',
-       number: '', 
-   };
-   
+  state = { ...INITIAL_STATE };  
+  
    nameInputId = nanoid();
    numberInputId = nanoid();
 
@@ -21,13 +22,18 @@ import PropTypes from 'prop-types';
 
   handleSubmit = evt =>{
     evt.preventDefault();
-    this.props.onSubmit(this.state);
+    // const { name, number } = this.state;
+    // console.log(`name: ${name}, number: ${number}`);
+    this.props.onSubmit({ ...this.state });
+    console.log({ ...this.state });
     this.reset();  
    };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
-    console.log('я работаю')
+   reset = () => {
+     console.log({ ...INITIAL_STATE });    
+     this.setState({ ...INITIAL_STATE });   
+    console.log({ ...this.state });
+    console.log('reset');
   };
 
 
@@ -35,7 +41,7 @@ import PropTypes from 'prop-types';
     return (
         <form onSubmit={this.handleSubmit}>
         <h1>Phonebook</h1>
-        <label htmlFor={this.nameInputId}>Name</label>        
+        <label htmlFor={this.nameInputId}>Name</label><br/>       
         <input
           type="text"
           value={this.nameValue}
@@ -45,7 +51,7 @@ import PropTypes from 'prop-types';
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required onChange={this.handleChange} /> 
       <br/>     
-        <label htmlFor={this.numberInputId}>Number</label>    
+        <label htmlFor={this.numberInputId}>Number</label><br/>       
         <input
           type="tel"
             name="number"
