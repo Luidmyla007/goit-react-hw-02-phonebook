@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { nanoid } from "nanoid"; 
 import css from './App.module.css';
 import { GlobalStyle } from './GlobalStyle';
-import Form from './ContactForm/contactForm';
+import Form from './ContactForm/ContactForm';
 import ContactList from './ContactList/contactList';
 import Filter from './Filter/filter';
 
@@ -55,7 +55,7 @@ export class App extends Component {
         <GlobalStyle />
         <Form onSubmit={this.formSubmitHandler} />        
         <div>
-          <h2>Contacts</h2>
+          <h2 className={css.title}>Contacts</h2>
           <Filter value={filter} onChange={this.onFilterChange}/>
           <ContactList
             contacts={searchContacts}
