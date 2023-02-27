@@ -19,7 +19,8 @@ export class App extends Component {
       contact => contact.name.toLocaleLowerCase() === NewContact.name.toLocaleLowerCase()
     );
       if (includesName) {
-      return alert(`${NewContact.name} is already in contacts.`);      
+        return alert(`${NewContact.name} is already in contacts.`); 
+       
       } else {      
        let myContact = { id: nanoid(), name: NewContact.name, number: NewContact.number };
       this.setState(prevState => ({
