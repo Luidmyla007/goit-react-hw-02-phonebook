@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { nanoid } from "nanoid"; 
 import css from './App.module.css';
 import { GlobalStyle } from './GlobalStyle';
-import Form from './ContactForm/ContactForm';
+import Form from './ContactForm/contactForm';
 import ContactList from './ContactList/contactList';
 import Filter from './Filter/filter';
 
